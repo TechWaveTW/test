@@ -21,7 +21,7 @@ jobs:
       - name: Login to Docker Registry
         uses: docker/login-action@v2
         with:
-          registry: 34.154.117.83:5000
+          registry: http://34.154.117.83:5000
           username: Xobolov
           password: 123456
 
@@ -42,7 +42,7 @@ jobs:
       - name: Login to Docker Registry
         uses: docker/login-action@v2
         with:
-          registry: 34.154.117.83:5000
+          registry: http://34.154.117.83:5000
           username: Xobolov
           password: 123456
 
