@@ -33,11 +33,12 @@ jobs:
           string: 34.154.117.83:5000/${{ github.repository }}:${{ github.ref_name }}-build-${{ github.run_number }}
 
       - run: docker rm -f ${{ github.event.repository.name }} 2> /dev/null
+
       - run: >
           docker run
-          -v /var/docker/fifa-match/storage/app/public:/var/www/html/public/storage
-          -v /var/docker/fifa-match/storage:/var/www/html/storage
-          -v /var/docker/fifa-match/config/.env:/var/www/html/.env
+          -v /var/docker/${{ env.REPOSITORY_NAME }}/storage/app/public:/var/www/html/public/storage
+          -v /var/docker/${{ env.REPOSITORY_NAME }}/storage:/var/www/html/storage
+          -v /var/docker/${{ env.REPOSITORY_NAME }}/config/.env:/var/www/html/.env
           --network=main
           --detach
           --restart unless-stopped
