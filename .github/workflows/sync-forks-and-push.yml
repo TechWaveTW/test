@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Sync with Upstream Repository
-        uses: tgymnich/fork-sync@v0.1.0
+        uses: tgymnich/fork-sync@v1.8.0
         with:
           upstream_repository: owner/repo
           github_token: ${{ secrets.GITHUB_TOKEN }}
