@@ -4,16 +4,23 @@ on:
       - main
 
 jobs:
-  sync:
-    runs-on: ubuntu-22.04
-    steps:
-      - name: Sync with Upstream Repository
-        uses: tgymnich/fork-sync@v1.8.0
-        with:
-          upstream_repository: owner/repo
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+  sync_with_upstream:
+    runs-on: ubuntu-latest
+    name: Sync HEAD with upstream latest
 
-      - name: Push Changes to Forked Repositories
-        run: |
-          git remote add forked git@github.com:owner/repo.git
-          git push forked
+    steps:
+      # Step 1: run a standard checkout action, provided by github
+      - name: Checkout HEAD
+        uses: actions/checkout@v2
+        with:
+          ref: main
+
+      # Step 2: run this sync action - specify the upstream repo, upstream branch to sync with, and target sync branch
+      - name: Pull upstream changes
+        id: sync
+        uses: aormsby/Fork-Sync-With-Upstream-action@fork
+        with:
+          upstream_repository: open-sauced/goals-template
+          upstream_branch: main
+          target_branch: main                       # optional
+          github_token: ${{ secrets.GITHUB_TOKEN }}
