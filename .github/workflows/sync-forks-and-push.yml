@@ -19,4 +19,4 @@ jobs:
         with:
           source_repo: ${{ github.repository }}
           source_branch: main
-          destination_token: ${{ secrets.FORK_SYNC_TOKEN }}
+          github_token: ${{ secrets.FORK_SYNC_TOKEN }}
