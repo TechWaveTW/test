@@ -1,4 +1,4 @@
-name: Sync with upstream
+name: Sync Forks
 
 on:
   push:
@@ -6,27 +6,17 @@ on:
       - main
 
 jobs:
-  sync:
+  sync_forks:
     runs-on: ubuntu-latest
-    name: Sync changes from upstream
-
     steps:
-      - name: Checkout code
+      - name: Checkout main repository
         uses: actions/checkout@v2
         with:
           ref: main
 
-      - name: Fetch upstream changes
-        run: |
-          git remote add upstream https://github.com/TechWaveTW/test.git
-          git fetch upstream
-
-      - name: Merge upstream changes
-        run: git merge upstream/main --no-edit
-
-      - name: Push changes to forked repo
-        uses: ad-m/github-push-action@master
+      - name: Sync forks
+        uses: repo-sync/github-sync@v2
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: main
-          force: true
+          source_repo: ${{ github.repository }}
+          source_branch: main
+          destination_token: ${{ secrets.FORK_SYNC_TOKEN }}
