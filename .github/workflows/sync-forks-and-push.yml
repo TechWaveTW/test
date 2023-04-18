@@ -1,24 +1,32 @@
+name: Sync with upstream
+
 on:
   push:
     branches:
       - main
 
 jobs:
-  sync_with_upstream:
+  sync:
     runs-on: ubuntu-latest
-    name: Sync HEAD with upstream latest
+    name: Sync changes from upstream
 
     steps:
-      - name: Checkout HEAD
+      - name: Checkout code
         uses: actions/checkout@v2
         with:
           ref: main
 
-      - name: Pull upstream changes
-        id: sync
-        uses: aormsby/Fork-Sync-With-Upstream-action@v3.4
+      - name: Fetch upstream changes
+        run: |
+          git remote add upstream https://github.com/TechWaveTW/test.git
+          git fetch upstream
+
+      - name: Merge upstream changes
+        run: git merge upstream/main --no-edit
+
+      - name: Push changes to forked repo
+        uses: ad-m/github-push-action@master
         with:
-          upstream_repository: TechWaveTW/test
-          upstream_branch: main
-          target_branch: main
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
+          force: true
