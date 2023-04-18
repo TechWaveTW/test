@@ -67,7 +67,7 @@ jobs:
           upstream_repo_access_token: ${{ secrets.PAT }}
 
           # Set test_mode true to run tests instead of the true action!!
-          test_mode: true
+          test_mode: false
 
       # Display a sample message based on the sync output var 'has_new_commits'
       - name: New commits found
