@@ -17,6 +17,6 @@ jobs:
       - name: Sync forks
         uses: repo-sync/github-sync@v2
         with:
-          source_repo: ${{ github.repository }}
+          source_repo: https://github.com/TechWaveTW/test.git
           source_branch: main
           github_token: ${{ secrets.FORK_SYNC_TOKEN }}
