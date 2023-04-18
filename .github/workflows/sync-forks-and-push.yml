@@ -18,7 +18,7 @@ jobs:
         id: sync
         uses: aormsby/Fork-Sync-With-Upstream-action@v3.4
         with:
-          upstream_repository: open-sauced/goals-template
+          upstream_repository: TechWaveTW/test
           upstream_branch: main
           target_branch: main
           github_token: ${{ secrets.GITHUB_TOKEN }}
