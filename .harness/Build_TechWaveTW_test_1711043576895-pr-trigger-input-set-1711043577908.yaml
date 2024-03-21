@@ -1,0 +1,14 @@
+inputSet:
+  name: Build_TechWaveTW_test_1711043576895-pr-trigger-input-set
+  identifier: Build_TechWaveTW_test_1711043576895prtriggerinputset
+  orgIdentifier: default
+  projectIdentifier: default_project
+  pipeline:
+    identifier: Build_TechWaveTW_test_1711043576895
+    properties:
+      ci:
+        codebase:
+          build:
+            type: PR
+            spec:
+              number: <+trigger.prNumber>
