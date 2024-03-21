@@ -1,0 +1,54 @@
+pipeline:
+  identifier: Build_TechWaveTW_test_1711043898887
+  name: Build test
+  orgIdentifier: default
+  projectIdentifier: test
+  properties:
+    ci:
+      codebase:
+        build: <+input>
+        connectorRef: account.Github_OAuth_1711043543705
+        repoName: TechWaveTW/test
+  stages:
+    - stage:
+        identifier: build
+        name: build
+        spec:
+          cloneCodebase: true
+          execution:
+            steps:
+              - step:
+                  identifier: installdependencies
+                  name: install dependencies
+                  spec:
+                    command: npm install
+                  timeout: ""
+                  type: Run
+              - step:
+                  identifier: dockerbuild
+                  name: docker_build
+                  spec:
+                    image: plugins/docker
+                    settings:
+                      dry_run: "true"
+                      password: <+input>
+                      repo: hello/world
+                      tags: latest
+                      username: <+input>
+                  timeout: ""
+                  type: Plugin
+              - step:
+                  identifier: composerinstall
+                  name: composer_install
+                  spec:
+                    command: composer install
+                    runAsUser: "1000"
+                  timeout: ""
+                  type: Run
+          platform:
+            arch: Amd64
+            os: Linux
+          runtime:
+            spec: {}
+            type: Cloud
+        type: CI
