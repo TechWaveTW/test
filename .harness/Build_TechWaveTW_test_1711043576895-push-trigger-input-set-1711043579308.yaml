@@ -1,0 +1,14 @@
+inputSet:
+  name: Build_TechWaveTW_test_1711043576895-push-trigger-input-set
+  identifier: Build_TechWaveTW_test_1711043576895pushtriggerinputset
+  orgIdentifier: default
+  projectIdentifier: default_project
+  pipeline:
+    identifier: Build_TechWaveTW_test_1711043576895
+    properties:
+      ci:
+        codebase:
+          build:
+            type: branch
+            spec:
+              branch: <+trigger.branch>
